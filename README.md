@@ -1,2 +1,2 @@
-# Elixer
+# Elixir
 react dnd assignment
