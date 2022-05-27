@@ -59,16 +59,17 @@ const MyTable = () => {
     const newLeftTree = leftTree.filter(x => x.label !== result.draggableId);
     console.log("destination:", result.destination.index)
     let temp = {};
-    if (result.destination.index !== rightTree_.length - 1 && find[0] != undefined) {
+    if (result.destination.index !== rightTree_.length - 1 && find[0].hasOwnProperty('label')) {
       temp = { id: find[0].id, value: find[0].value, label: find[0].label, draggerID: find[0].draggerID }
-
-      temp.label = `${find[0].label} mapped to ${rightTree_[result.destination.index].label}`
-      rightTree_.splice(result.destination.index, 0, temp);
+      if (rightTree_[result.destination.index] != undefined) {
+        temp.label = `${find[0].label} mapped to ${rightTree_[result.destination.index].label}`
+        rightTree_.splice(result.destination.index, 0, temp);
+      }
     }
     items.splice(result.destination.index, 0, find[0]);
     setLeftTree(newLeftTree);
     setRightTree(items);
-    if (Object.keys(temp).length > 0) {
+    if (Object.keys(temp).length > 0 && rightTree_[result.destination.index] != undefined) {
 
       setRightTree_(rightTree_)
 
